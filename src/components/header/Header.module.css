@@ -1,0 +1,52 @@
+.header{
+      backdrop-filter: blur(40px);
+      background: rgba(18, 24, 41, 0.8);
+}
+
+.navbar{
+      max-width: 1440px;
+      padding: 16px 120px;
+      display: flex;
+      gap: 1rem;
+      margin: auto;
+      backdrop-filter: blur(40px);
+      background: rgba(18, 24, 41, 0.8);
+}
+
+.logo{
+      flex-grow: 1;
+}
+
+.logo a{
+      display: block;
+}
+
+.logo a img{
+      width: 40px;
+      height: 40px;
+      object-fit: 40px;
+}
+
+.listOfPages{
+      display: flex;
+      gap: 16px;
+      list-style-type: none;
+}
+
+.navListLink{
+      text-decoration: none;
+      font-family: var(--font-family);
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 150%;
+      letter-spacing: 0.02em;
+      color: var(--grey-200);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: .5s;
+}
+.navListLink:hover{
+      color: var(--primary-400);
+}

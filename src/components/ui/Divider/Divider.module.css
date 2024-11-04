@@ -1,0 +1,22 @@
+.divider{
+    position: relative;
+    height: 1px;
+    background-color: var(--grey-700);
+    margin: 40px 0;
+}
+.labelBox{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #14182d;
+    padding: 0 12px;
+}
+
+.labelBox p{
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--grey-200);
+}

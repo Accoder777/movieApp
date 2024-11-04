@@ -1,0 +1,35 @@
+.notFoundContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 40px 0;
+}
+
+.content{
+    margin-bottom: 24px;
+
+    width: 588px;
+    height: 120px;
+}
+
+.title{
+    margin-bottom: 16px;
+
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 117%;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: var(--grey-50);
+}
+
+.desc{
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    color: var(--grey-300);
+}

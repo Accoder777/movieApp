@@ -1,0 +1,41 @@
+.container{
+    border-radius: 12px;
+    padding: 8px;
+
+    display: flex;
+
+    backdrop-filter: blur(80px);
+    background: var(--black-20);
+    display: inline-block;
+}
+.item{
+
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    padding: 8px 32px;
+
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.02em;
+    color: var(--grey-300);
+    transition: .5s;
+
+    background-color: transparent;
+}
+
+.item.active{
+    border-radius: 8px;
+    padding: 8px 32px;
+ 
+    background: var(--primary-400);
+
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.02em;
+    color: var(--primary-50);
+}

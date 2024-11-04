@@ -1,0 +1,29 @@
+.BodyTop{
+    padding: 80px 0;
+}
+.title{
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 125%;
+    letter-spacing: -0.02em;
+    color: var(--grey-50);
+    margin-bottom: 24px;
+    }
+.desc{
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--grey-300);
+    margin-bottom: 24px;
+    max-width: 588px;
+    margin-top: 10px;
+}
+.mailhereko{
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 133%;
+    color: var(--primary-200);
+}

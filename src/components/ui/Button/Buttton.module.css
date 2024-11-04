@@ -1,0 +1,15 @@
+.Btn{
+    border: 2px solid var(--primary-400);
+    border-radius: 12px;
+    padding: 16px 32px;
+
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--white-100);
+
+    background: var(--primary-400);
+
+    cursor: pointer;
+}

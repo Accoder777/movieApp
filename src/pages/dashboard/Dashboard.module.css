@@ -1,0 +1,98 @@
+.Dashboard{
+    min-width: 800px;
+    max-width: 1200px;
+}
+
+.title{
+    margin-top: 80px;
+    margin-bottom: 40px;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 117%;
+    letter-spacing: -0.02em;
+    color: var(--grey-50);
+}
+.cardContainer{
+    margin: auto;
+    max-width: 1200px;
+    min-height: 152px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px;
+    
+}
+.dashboardCards{
+    border-radius: 12px;
+    padding: 40px 16px;
+    width: 282px;
+    height: 152px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
+    background: var(--grey-900);
+    opacity: 0.8;
+}
+.score{
+    display: block;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 125%;
+    letter-spacing: -0.02em;
+    color: var(--grey-50);
+}
+.nameOfPage{
+    display: block;font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--grey-400);
+}
+.throwLink{
+    display: block;
+    margin-top: 100px;
+    margin-bottom: 40px;
+    text-align: center;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: var(--grey-50);
+    text-decoration: none;
+}
+.actionsContainer{
+    margin: auto;
+    max-width: 1196px;
+    height: 104px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+.actions{
+    border-radius: 12px;
+    padding: 40px;
+    width: 586px;
+    height: 104px;
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--black-20);
+    opacity: 0.8;
+
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.02em;
+    color: var(--primary-400);
+    cursor: pointer;
+}

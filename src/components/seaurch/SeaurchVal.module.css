@@ -1,0 +1,37 @@
+.seauchInputBox{
+    display: flex;
+    position: relative;
+    width: 344px;
+}
+.seauchInputIcon{
+    position: absolute;
+    top: 20px;
+    left: 16px;
+}
+.seauchInput{
+    width: 100%;
+    border: 1px solid var(--grey-700);
+    background: var(--black-10);
+    outline: none;
+    padding: 20px 16px;
+    padding-left: 56px;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 114%;
+    color: var(--grey-600);
+    border-radius: 12px;
+
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--grey-400);
+}
+.seauchInput::placeholder{
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 114%;
+    color: var(--grey-600);
+}

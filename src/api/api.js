@@ -53,3 +53,7 @@ export const getTrending = async(typeOf)=>{
 export const getMovieDetail = async( id )=>{
     return await apiClient.get(`/movie/${id}?api_key=${apiKey}`)
 }
+
+export const getTvDetail = async( id )=>{
+    return await apiClient.get(`/tv/${id}?api_key=${apiKey}`)
+}

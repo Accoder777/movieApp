@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React  from 'react'
 import './styles/App.css'
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import Movies from './pages/movies/Movies'
@@ -11,9 +11,8 @@ import Dashboard from './pages/dashboard/Dashboard'
 import DashboardLayout from './layout/DashboardLayout'
 import AuthRequired from './components/authRequired/AuthRequired'
 import SuggestMe from './pages/SuggestMe'
-import Example from './pages/Example'
-import MoviesDetails from './pages/moviesDetails/MoviesDetails'
-import TvShowsDetails from './pages/tvShowsDetails/tvShowsDetails'
+import MovieDetail from './pages/moviesDetail/MovieDetail'
+import TvShowsDetail from './pages/tvShowsDetail/TvShowsDetail'
 function Logout (){
   
   const {REACT_APP_SESSION_ID} = process.env
@@ -35,11 +34,10 @@ const App = () => {
           <Route path="/" element={<Home/>}/>
           <Route path="/movies" element={<Movies/>}/>
           <Route path="/tvShows" element={<TvShows/>}/>
-          <Route path="/movies/:id" element={<MoviesDetails />}/>
-          <Route path="/tvShows/:id" element={<TvShowsDetails/>}/>
+          <Route path="/movies/:id" element={<MovieDetail />}/>
+          <Route path="/tvShows/:id" element={<TvShowsDetail/>}/>
           <Route path="/suggestMe" element={<SuggestMe/>}/>
           <Route path="/login" element={<Login/>}/>
-          <Route path='/example' element={<Example/>}/>
           {/* Error pages */}
           <Route path="*" element={<NotFound404/>}/>
         </Route>

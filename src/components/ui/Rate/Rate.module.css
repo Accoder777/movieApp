@@ -1,0 +1,27 @@
+.starRate{
+    display: inline-block;
+    border-radius: 8px;
+    padding: 4px 8px;
+    max-width: 60px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    /* position: absolute; */
+    top: 18px;
+    left: 16px;
+
+    backdrop-filter: blur(8px);
+    background: var(--black-65);
+
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--warning-500);
+
+}
+.starRate span{
+    display: inline-block;
+}

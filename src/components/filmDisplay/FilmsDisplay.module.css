@@ -13,6 +13,8 @@
     height: 480px;
     position: relative;
     margin-top: 20px;
+    display: inline-block;
+    margin: 8px;
 
     backdrop-filter: blur(80px);
     background: rgba(32, 40, 62, 0.8);

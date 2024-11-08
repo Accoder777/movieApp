@@ -1,12 +1,11 @@
 import { HandleApiRespErr } from '../utils/HandleApiRespErr';
-import apiClient from './apiCleint'
+import apiClient from './apiClient'
 
 const apiKey = process.env.REACT_APP_API_KEY
 
 export const generateNewRequestToken = new Promise(async(resolve, reject)=>{
     try {
         const response = await apiClient.get(`/authentication/token/new?api_key=${apiKey}`);
-        
         resolve(response?.data?.request_token)
     } catch (error) {
         HandleApiRespErr(error)
@@ -48,12 +47,40 @@ export const getTrending = async(typeOf)=>{
     return await apiClient.get(`/trending/${typeOf}/week?api_key=${apiKey}`)
 }
 
+// get trending tvShows
+export const getTrendingTvShows = async()=>{
+    return await apiClient.get(`/trending/tv/week?api_key=${apiKey}`)
+}
+
+// get trending tvShows
+export const getTrendingMovies = async()=>{
+    return await apiClient.get(`/trending/movie/week?api_key=${apiKey}`)
+}
+
+
 // get movie details
 
 export const getMovieDetail = async( id )=>{
     return await apiClient.get(`/movie/${id}?api_key=${apiKey}`)
 }
 
+// get tv detail
 export const getTvDetail = async( id )=>{
     return await apiClient.get(`/tv/${id}?api_key=${apiKey}`)
 }
+
+// search
+export const findAll = async( query ) =>{
+    return await apiClient.get(`/search/multi?api_key=${apiKey}&query=${query}`)
+} 
+
+//search tv
+export const findTv = async(query) =>{
+    return await apiClient.get(`/search/tv?api_key=${apiKey}&query=${query}`)
+} 
+
+
+//search movie
+export const findMovie = async(query) =>{
+    return await apiClient.get(`/search/tv?api_key=${apiKey}&query=${query}`)
+} 

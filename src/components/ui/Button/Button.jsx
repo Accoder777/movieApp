@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from './Buttton.module.css'
+import styles from './Button.module.css'
 
-const Buttton = ({type='button', children, onClick, disabled,style={}}) => {
+const Button = ({type='button', children, onClick, disabled,style={}}) => {
   return (
     <button className={styles.Btn} type={type} onClick={onClick} disabled={disabled} style={style}>
         {children}
@@ -9,4 +9,4 @@ const Buttton = ({type='button', children, onClick, disabled,style={}}) => {
   )
 }
 
-export default Buttton
+export default Button

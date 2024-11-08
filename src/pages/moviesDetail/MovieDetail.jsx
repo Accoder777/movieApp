@@ -23,7 +23,6 @@ const MovieDetail = () => {
                 const fetchedData = await getMovieDetail(id);
                 if(fetchedData.status === 200 && fetchedData.data){
                     setData(fetchedData.data)
-                    console.log(fetchedData.data)
                 }
 
             } catch (error) {

@@ -13,11 +13,12 @@ import AuthRequired from './components/authRequired/AuthRequired'
 import SuggestMe from './pages/SuggestMe'
 import MovieDetail from './pages/moviesDetail/MovieDetail'
 import TvShowsDetail from './pages/tvShowsDetail/TvShowsDetail'
+
 function Logout (){
-  
   const {REACT_APP_SESSION_ID} = process.env
-  localStorage.removeItem(REACT_APP_SESSION_ID)
   const navigator = useNavigate();
+  
+  localStorage.removeItem(REACT_APP_SESSION_ID)
   navigator('/login')
   
   return (

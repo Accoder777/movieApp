@@ -6,14 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { HandleApiRespErr } from '../../utils/HandleApiRespErr';
 import Divider from '../../components/ui/Divider/Divider';
-import Buttton from '../../components/ui/Button/Buttton';
+import Button from '../../components/ui/Button/Button';
 import Input from '../../components/ui/Input/Input';
-import { generateNewRequestToken,createSession, getUserDetails } from '../../api/api';
+import { generateNewRequestToken,createSession} from '../../api/api';
 import { useContext, useEffect, useState } from 'react';
 import { CreatedContext } from '../../pages/context/UserContext'
 
 const validationSchema = Yup.object().shape({
-  // email: Yup.string().email().required(),
   email: Yup.string().required(),
   password: Yup.string().min(6).required()
 });
@@ -72,7 +71,7 @@ const Login = () => {
           })
           
 
-          // resetform
+          // reset form
           resetForm()
 
           // navigate
@@ -82,7 +81,6 @@ const Login = () => {
         }
       } catch (error) {
         HandleApiRespErr(error)
-        // console.log(error)
       }
       finally{
         setSubmitting(false)
@@ -150,7 +148,7 @@ const Login = () => {
             }
             placeholder='Password'
           />
-          <Buttton
+          <Button
            type={'submit'} 
            disabled={formik.isSubmitting} 
            style={{width: "100%"}} 
@@ -162,7 +160,7 @@ const Login = () => {
                 "Submit"
               )
             }
-          </Buttton>
+          </Button>
             <Divider label={'or'}/>
 
             <button 

@@ -1,7 +1,7 @@
 import React from 'react'
 import notfound from '../../assets/img/notfound.svg'
 import styles from  './NotFound404.module.css'
-import Buttton from '../../components/ui/Button/Buttton'
+import Button from '../../components/ui/Button/Button'
 import { useNavigate } from 'react-router-dom'
 
 const NotFound404 = () => {
@@ -22,9 +22,9 @@ const NotFound404 = () => {
         <h1 className={styles.title}>Lost your way?</h1>
         <p className={styles.desc}>Oops! This is awkward. You are looking for something that doesn't actually exist.</p>
       </div>
-      <Buttton onClick ={handleNavigate}>
+      <Button onClick ={handleNavigate}>
         Go to Home
-      </Buttton>
+      </Button>
     </div>
   )
 }

@@ -21,7 +21,6 @@ const TvShowsDetail = () => {
                 const fetchedData = await getTvDetail(id);
                 if(fetchedData.status === 200 && fetchedData.data){
                     setData(fetchedData.data)
-                    console.log(fetchedData.data)
                 }
 
             } catch (error) {

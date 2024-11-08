@@ -1,70 +1,91 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import BodyTop from '../../components/bodyTop/BodyTop'
 import styles from './TvShows.module.css'
 import FilmsDisplay from '../../components/filmDisplay/FilmsDisplay'
+import { HandleApiRespErr } from '../../utils/HandleApiRespErr'
+import { findTv, getTrendingTvShows } from '../../api/api'
+import { useDebounce } from 'use-debounce'
+import Skeleton from 'react-loading-skeleton'
 
 const TvShows = () => {
   // state
   const [Inputvalue, setInputValue] = useState('')
-  
+  const [debounceFilter] = useDebounce (Inputvalue, 1000)
+  const [isLoading, setIsloading] = useState(false)
+  const [tvData, setTvData] = useState([])
 
-  const filmData = [
-    {
-      id: 1,
-      pictureName: 'filmPicture.png',
-      title: 'Black Window',
-      rate: '6.8'
-    },
-    {
-      id: 2,
-      pictureName: 'filmPicture.png',
-      title: 'Black WindowShag Chi',
-      rate: '7.9'
-    },
-    {
-      id: 3,
-      pictureName: 'filmPicture.png',
-      title: 'Loki',
-      rate: '8.4'
-    },
-    {
-      id: 4,
-      pictureName: 'filmPicture.png',
-      title: 'How I Met Your Mother',
-      rate: '8.3'
-    },
-    {
-      id: 5,
-      pictureName: 'filmPicture.png',
-      title: 'Money Heist',
-      rate: '8.3'
-    },
-    {
-      id: 6,
-      pictureName: 'filmPicture.png',
-      title: 'Friends',
-      rate: '8.8'
-    },
-    {
-      id: 7,
-      pictureName: 'filmPicture.png',
-      title: 'The Big Bang Theory',
-      rate: '8.1'
-    },
-    {
-      id: 8,
-      pictureName: 'filmPicture.png',
-      title: 'Two And a Half Men',
-      rate: '8.1'
+  useEffect(()=>{
+    const fetchData = async()=>{
+      setIsloading(true)
+      try {
+        const res = await getTrendingTvShows();
+        if(res.status === 200 && res.data){
+          setTvData(res.data.results)
+        }
+      } catch (error) {
+        HandleApiRespErr(error)
+      }finally{
+        setIsloading(false)
+      }
     }
-  ]
+    fetchData()
+
+  },[])
+
+  console.log(Inputvalue)
+
+  const handleFindData = async (Inputvalue) =>{
+    setInputValue(Inputvalue)
+    setIsloading(true)
+    try {
+      const res = await findTv(Inputvalue);
+      console.log(res)
+      if(res.status === 200 && res.data.results){
+        setTvData(res.data.results)
+      }
+    } catch (error) {
+      HandleApiRespErr(error)
+    } finally{
+      setIsloading(false)
+    }
+  }
+  
+  useEffect(()=>{
+    if(debounceFilter){
+      handleFindData(debounceFilter)
+    } 
+    
+  },[debounceFilter])
 
   return (
     <>
-     <BodyTop BodyTopTitle={"TV Shows"} value={Inputvalue} setValue={setInputValue} />
-     <p className={styles.filmCounter}>({filmData.length})</p>     
+     <BodyTop BodyTopTitle={"TV Shows"} value={Inputvalue} setValue={handleFindData} />
+     <p className={styles.filmCounter}>{`${tvData.length} items`}</p>     
      
-     <FilmsDisplay filmData={filmData}/>
+     {isLoading ? (
+          <div style={{marginLeft: '20px'}}>
+            <Skeleton
+              height={480} 
+              width={282} 
+              baseColor="#8383832f" 
+              highlightColor="#8383832f"
+              count={8} 
+              direction="ltr"
+              borderRadius={'1rem'}
+              inline={'true'}
+              enableAnimation
+              marginBottom={'0.5rem'}
+              marginLeft={'1rem'}
+            />
+          </div>
+        ):(
+        
+        tvData.map((item)=>(
+            <FilmsDisplay {...item}  key={item.id}/>
+          ))
+     )
+     }
+     
     </>
   )
 }

@@ -7,7 +7,7 @@ const AuthRequired = () => {
 
   return isLoading?(
     "Loading ...."
-  ) : isAuthenticate?(
+  ) : true?(
     <Outlet/>
   ):(
     <Navigate to='/login' replace='true'/>

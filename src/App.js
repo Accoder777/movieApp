@@ -13,6 +13,7 @@ import AuthRequired from './components/authRequired/AuthRequired'
 import SuggestMe from './pages/SuggestMe'
 import MovieDetail from './pages/moviesDetail/MovieDetail'
 import TvShowsDetail from './pages/tvShowsDetail/TvShowsDetail'
+import Add from './pages/dashboard/add/Add'
 
 function Logout (){
   const {REACT_APP_SESSION_ID} = process.env
@@ -49,6 +50,7 @@ const App = () => {
             <Route path='/dashboard' element={<DashboardLayout/>}>
             <Route path='/dashboard' element={<Dashboard/>}/>
             <Route path='/dashboard/logout' element={<Logout/>}/>
+            <Route path='/dashboard/add' element={<Add/>}/>
           </Route>
 
           {/* Error pages */}

@@ -49,6 +49,87 @@
     color: var(--grey-50);
 }
 
+.AddList{
+    position: absolute;
+    top: 448px;
+    right: 20px;
+
+    border-radius: 24px;
+    padding: 40px;
+    width: 500px;
+    height: 140px;
+
+    backdrop-filter: blur(24px);
+    background: rgba(32, 40, 62, 0.8);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+
+
+.addBtn{
+    cursor: pointer;
+
+    margin-top: 4px;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 125%;
+    letter-spacing: -0.02em;
+    color: var(--primary-400);
+    text-align: center;
+    
+    display: flex;
+    justify-content: center;
+
+}
+
+.removeBtn{
+    cursor: pointer;
+    
+    margin-top: 4px;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 125%;
+    letter-spacing: -0.02em;
+    text-align: center;
+    
+    display: flex;
+    justify-content: center;
+    color: var(--error-500);
+}
+
+.suggestBtn{
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 0.02em;
+    color: var(--primary-400);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.unSuggestBtn{
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 0.02em;
+    color: var(--success-400);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
 
 .pictureBottom{
     border-radius: 24px;

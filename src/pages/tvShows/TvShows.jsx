@@ -32,14 +32,12 @@ const TvShows = () => {
 
   },[])
 
-  console.log(Inputvalue)
 
   const handleFindData = async (Inputvalue) =>{
     setInputValue(Inputvalue)
     setIsloading(true)
     try {
       const res = await findTv(Inputvalue);
-      console.log(res)
       if(res.status === 200 && res.data.results){
         setTvData(res.data.results)
       }

@@ -32,13 +32,11 @@ const Movies = () => {
 
   },[])
 
-  console.log(Inputvalue)
 
   const handleFindData = async (Inputvalue) =>{
     setIsloading(true)
     try {
       const res = await findMovie(Inputvalue);
-      console.log(res)
       if(res.status === 200 && res.data.results){
         setMovieData(res.data.results)
       }

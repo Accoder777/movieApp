@@ -1,10 +1,50 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from './Dashboard.module.css'
 import { CreatedContext } from '../context/UserContext'
+import { getFavoriteTv, getWatchList } from '../../api/api'
+import { HandleApiRespErr } from '../../utils/HandleApiRespErr'
 
 const Dashboard = () => {
 
     const {sessionId,user} = useContext(CreatedContext)
+    const [tvData, setTvData] = useState([])
+    const [movieData, setMovieData] = useState([])
+    const [suggestData, setSuggestData] = useState([])
+
+    const fetchFavoriteData = async(typeOf)=>{
+        try {
+            const res = await getFavoriteTv(typeOf);
+            if(res.status === 200 && res.data.results){
+                if(typeOf === 'tv'){
+                    setTvData(res.data.results)
+                    console.log(res.data.results)
+                }else{
+                    setMovieData(res.data.results)
+                    console.log(res.data.results)
+                }
+            }
+        } catch (error) {
+            HandleApiRespErr(error)
+        }
+    }
+    
+    const fetchWatchList = async(typeOf)=>{
+        try {
+            const res = await getWatchList(typeOf);
+            if(res.status === 200 && res.data.results){
+                setSuggestData(res.data.results)
+                
+            }
+        } catch (error) {;
+            HandleApiRespErr(error)
+        } 
+    }
+
+    useEffect(()=>{
+        fetchFavoriteData('tv')
+        fetchFavoriteData('movies')
+        fetchWatchList('tv');
+    },[])
 
   return (
     <>
@@ -18,15 +58,15 @@ const Dashboard = () => {
             <h1 className={styles.title}>Welcome</h1>
             <div className={styles.cardContainer}>
                 <div className={styles.dashboardCards}>
-                    <span className={styles.score}>93</span>
+                    <span className={styles.score}>{movieData.length}</span>
                     <p className={styles.nameOfPage}>Movies</p>
                 </div>
                 <div className={styles.dashboardCards}>
-                    <span className={styles.score}>26</span>
+                    <span className={styles.score}>{tvData.length}</span>
                     <p className={styles.nameOfPage}>TV Shows</p>
                 </div>
                 <div className={styles.dashboardCards}>
-                    <span className={styles.score}>7</span>
+                    <span className={styles.score}>{suggestData.length}</span>
                     <p className={styles.nameOfPage}>Suggestions</p>
                 </div>
                 <div className={styles.dashboardCards}>

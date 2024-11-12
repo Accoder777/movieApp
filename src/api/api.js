@@ -1,7 +1,7 @@
 import { HandleApiRespErr } from '../utils/HandleApiRespErr';
 import apiClient from './apiClient'
 
-const apiKey = process.env.REACT_APP_API_KEY
+const apiKey = process.env.REACT_APP_API_KEY;
 
 export const generateNewRequestToken = new Promise(async(resolve, reject)=>{
     try {
@@ -84,3 +84,18 @@ export const findTv = async(query) =>{
 export const findMovie = async(query) =>{
     return await apiClient.get(`/search/tv?api_key=${apiKey}&query=${query}`)
 } 
+
+// 
+export const getFavoriteTv = async(typeOf)=>{
+    return await apiClient.get(`/account/21575738/favorite/${typeOf}?api_key=${apiKey}&session_id=bfdde5805050f19ecbc44cb6698bd902ded943c7`)
+}
+
+// 
+export const getFavorites = async(typeOf)=>{
+    return await apiClient.get(`/account/21575738/favorite/${typeOf}?api_key=${apiKey}&session_id=bfdde5805050f19ecbc44cb6698bd902ded943c7`)
+}
+
+// watchList
+export const getWatchList = async(typeOf)=>{
+    return await apiClient.get(`/account/21575738/watchlist/${typeOf}?api_key=${apiKey}&session_id=bfdde5805050f19ecbc44cb6698bd902ded943c7`)
+}

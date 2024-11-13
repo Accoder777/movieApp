@@ -7,7 +7,7 @@ import ButtonSuggest from "../ui/ButtonSuggest/ButtonSuggest";
 const FilmsDisplay = ({ id, title, name, vote_average, media_type, poster_path, suggest,favoriteData }) => {
   const to = media_type === 'movie' ? "movies" : "tvShows"
 
-  const isSuggested = favoriteData.some(item=> item.id == id)
+  const isSuggested = favoriteData?.some(item=> item.id == id)
   return suggest?(
     <div key={id} className={styles.filmCard}>
           <LazyLoadImage

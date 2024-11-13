@@ -57,7 +57,7 @@ const SuggestMe = () => {
     try {
       const res = await findAll(Inputvalue)
       if(res.data.results){
-        const tempData = res.data.results.filter((item)=> item.media_type!=='person')
+        const tempData = res.data?.results.filter((item)=> item.media_type!=='person')
         setMoviesData(tempData)
 
       }
@@ -80,7 +80,7 @@ const SuggestMe = () => {
       const res = await getFavorites(dataType);
       setFavoritesId((prevItems) => [
         ...prevItems,       
-        ...res.data.results 
+        ...res.data?.results 
       ]);
       
       console.log('res favorite', favoritesID)

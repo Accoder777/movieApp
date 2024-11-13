@@ -10,7 +10,7 @@
     border-radius: 12px;
     padding: 8px 8px 16px 8px;
     width: 282px;
-    height: 480px;
+    min-height: 480px;
     position: relative;
     margin-top: 20px;
     display: inline-block;

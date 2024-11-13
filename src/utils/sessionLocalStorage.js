@@ -14,6 +14,6 @@ export const setSessionID = (sessionId) =>{
 
 // remove item
 
-export const removeSessionId =()=>{
-    localStorage.removeItem(REACT_APP_SESSION_ID)
-}
+// export const removeSessionId = ()=>{
+//     localStorage.removeItem(REACT_APP_SESSION_ID)
+// }

@@ -10,6 +10,7 @@ const initialValues = {
     isLoading: true
 }
 
+
 const reducer = (state, action) =>{
     if(action.type === 'Auth'){
         return{
@@ -41,7 +42,7 @@ const reducer = (state, action) =>{
     }
     else if(action.type === 'logout'){
         // localstorage
-        removeSessionId()
+        // removeSessionId()
 
         return{
             ...state,

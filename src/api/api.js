@@ -15,7 +15,7 @@ export const generateNewRequestToken = new Promise(async(resolve, reject)=>{
 
 export const createSession = async(requestToken)=>{
     try {
-        const res =  await apiClient.post('/authentication/session/new',{
+        const res =  await apiClient.post(`/authentication/session/new?api_key=${apiKey}`,{
             request_token: requestToken
         })
 
@@ -28,12 +28,7 @@ export const createSession = async(requestToken)=>{
 
 // User details
 export const getUserDetails = async(sessionId) => {
-    try{
-        const dataInform =  await apiClient.get(`/account?api_key=${apiKey}&session_id=${sessionId}`)
-        return dataInform.results
-    }catch(err){
-        HandleApiRespErr(err)
-    }
+        return await apiClient.get(`/account?api_key=${apiKey}&session_id=${sessionId}`)
 }
 
 // Popular movies
@@ -98,4 +93,9 @@ export const getFavorites = async(typeOf)=>{
 // watchList
 export const getWatchList = async(typeOf)=>{
     return await apiClient.get(`/account/21575738/watchlist/${typeOf}?api_key=${apiKey}&session_id=bfdde5805050f19ecbc44cb6698bd902ded943c7`)
+}
+
+// add to Suggestion
+export const addToSuggest = async({accountId, sessionId,body}) =>{
+    return await apiClient.post(`/account/${accountId}/favorite?api_key=${apiKey}&session_id=${sessionId}`,body)
 }

@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { getUserDetails } from "../api/api";
 import { CreatedContext } from "../pages/context/UserContext";
-import { type } from "@testing-library/user-event/dist/type";
 
 const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const { sessionId, dispatch} = useContext(CreatedContext)
+    console.log('sesssionID', sessionId)
 
     useEffect(() => {
         const authFetch = async () => {
@@ -15,6 +15,7 @@ const AuthProvider = ({ children }) => {
             try {
                 
                 const res = await getUserDetails(sessionId);
+                console.log('User Detail==>', res)
                 
                 // Store Data 
                 dispatch({
@@ -34,7 +35,7 @@ const AuthProvider = ({ children }) => {
         };
 
         authFetch();
-    }, [sessionId]);
+    }, [sessionId, dispatch]);
 
     return isLoading ? "Loading..." : <>{children}</>;
 };

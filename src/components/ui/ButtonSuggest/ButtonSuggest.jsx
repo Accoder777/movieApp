@@ -5,11 +5,8 @@ import { CreatedContext } from "../../../pages/context/UserContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const ButtonSuggest = ({id, media_type, isSuggested}) => {
-  // const {sessionId, accountid} = useContext(CreatedContext)
-  const sessionId = 'bfdde5805050f19ecbc44cb6698bd902ded943c7';
-  const accountId = '21575738';
-
+const ButtonSuggest = ({id, media_type, isSuggestedMovie,isSuggestedTv}) => {
+  const {sessionId, accountId } = useContext(CreatedContext)
   const navigator = useNavigate()
 
   
@@ -31,11 +28,14 @@ const ButtonSuggest = ({id, media_type, isSuggested}) => {
       })
 
       toast.success(res.data?.status_message)
+      if(res.data?.status_message){
+        window.location.reload()
+      }
     } catch (error) {
       handleAddSuggest(error)
     }
   }
-  return isSuggested ? (
+  return isSuggestedMovie || isSuggestedTv ? (
     <button className={styles.alWatch}>
     <svg
         width="24"

@@ -1,36 +1,43 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import BodyTop from "../components/bodyTop/BodyTop";
 import styles from "./SuggestMe.module.css";
 import FilmsDisplay from "../components/filmDisplay/FilmsDisplay";
-import Tabs from "../components/ui/Tabs/Tabs";
-import { findAll, getFavorites, getTrending } from "../api/api";
+import { findAll, getSuggest, getTrending } from "../api/api";
 import { HandleApiRespErr } from "../utils/HandleApiRespErr";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'; // Import styles
 import { useDebounce } from "use-debounce";
-
-const list = [
-  {
-    key: "all",
-    label: "ALL",
-  },
-  {
-    key: "movie",
-    label: "Movies",
-  },
-  {
-    key: "tv",
-    label: "Tv Shows",
-  },
-];
+import { CreatedContext } from "./context/UserContext";
 
 const SuggestMe = () => {
   const [Inputvalue, setInputValue] = useState("");
   const [isLoading, setIsloading] = useState(false);
   const [connectionErr, setConnnectionErr] = useState(false);
-  const [moviesData, setMoviesData] = useState([]);
-  const [favoritesID, setFavoritesId] = useState([])
   const [debounceFilter] = useDebounce(Inputvalue, 1000)
+  const [moviesData, setMoviesData] = useState([]);
+  const [favoriteTv, setFavoriteTv] = useState([])
+  const [favoriteMovies, setFavoriteMovies] = useState([])
+  const { sessionId } = useContext(CreatedContext)
+  
+  useEffect(()=>{
+    const getFavoriteData = async (dataType, sessionId) => {
+      try {
+        // const res = await getFavorites(dataType, sessionId);
+        const res = await getSuggest(21575738,sessionId, dataType);
+        if(dataType === 'movies'){
+          setFavoriteMovies(res.data.results)
+        }else{
+          setFavoriteTv(res.data.results)
+        }
+        
+      } catch (error) {
+        HandleApiRespErr(error);
+      }
+    };
+     getFavoriteData('tv', sessionId)
+     getFavoriteData('movies', sessionId)
+  },[])
+
 
   useEffect(() => {
     const getData = async () => {
@@ -74,25 +81,8 @@ const SuggestMe = () => {
     } 
     
   },[debounceFilter])
-  
-  const getFavoriteData = async (dataType) => {
-    try {
-      const res = await getFavorites(dataType);
-      setFavoritesId((prevItems) => [
-        ...prevItems,       
-        ...res.data?.results 
-      ]);
-      
-      console.log('res favorite', favoritesID)
-    } catch (error) {
-      HandleApiRespErr(error);
-    }
-  };
-  
-  useEffect(()=>{
-     getFavoriteData('tv')
-     getFavoriteData('movie')
-  },[])
+
+
 
 
   return (
@@ -129,7 +119,7 @@ const SuggestMe = () => {
           <div>Connection error occurred</div>
         ) : (    
             moviesData.map((item) => (
-              <FilmsDisplay {...item} key={item.id} suggest={true} favoriteData={favoritesID} />
+              <FilmsDisplay {...item} key={item.id} suggest={true} favoriteMovies={favoriteMovies} favoriteTv={favoriteTv} />
             ))         
         )}
       </div>

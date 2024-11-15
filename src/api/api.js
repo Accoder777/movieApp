@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import { HandleApiRespErr } from '../utils/HandleApiRespErr';
 import apiClient from './apiClient'
+import { CreatedContext } from '../pages/context/UserContext';
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -81,18 +83,14 @@ export const findMovie = async(query) =>{
 } 
 
 // 
-export const getFavoriteTv = async(typeOf)=>{
-    return await apiClient.get(`/account/21575738/favorite/${typeOf}?api_key=${apiKey}&session_id=bfdde5805050f19ecbc44cb6698bd902ded943c7`)
+export const getFavorites = async(typeOf, sessionId)=>{
+    return await apiClient.get(`/account/21575738/favorite/${typeOf}?api_key=${apiKey}&session_id=${sessionId}`)
 }
 
-// 
-export const getFavorites = async(typeOf)=>{
-    return await apiClient.get(`/account/21575738/favorite/${typeOf}?api_key=${apiKey}&session_id=bfdde5805050f19ecbc44cb6698bd902ded943c7`)
-}
+// get Suggestion
 
-// watchList
-export const getWatchList = async(typeOf)=>{
-    return await apiClient.get(`/account/21575738/watchlist/${typeOf}?api_key=${apiKey}&session_id=bfdde5805050f19ecbc44cb6698bd902ded943c7`)
+export const getSuggest = async(accountId, sessionId,typeOf)=>{
+    return await apiClient.get(`/account/${accountId}/favorite/${typeOf}?api_key=${apiKey}&session_id=${sessionId}`)
 }
 
 // add to Suggestion

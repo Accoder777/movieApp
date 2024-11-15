@@ -4,10 +4,11 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import ButtonSuggest from "../ui/ButtonSuggest/ButtonSuggest";
 
-const FilmsDisplay = ({ id, title, name, vote_average, media_type, poster_path, suggest,favoriteData }) => {
+const FilmsDisplay = ({ id, title, name, vote_average, media_type, poster_path, suggest, favoriteMovies, favoriteTv }) => {
   const to = media_type === 'movie' ? "movies" : "tvShows"
 
-  const isSuggested = favoriteData?.some(item=> item.id == id)
+  const isSuggestedMovie = favoriteMovies?.some(item=> item.id == id)
+  const isSuggestedTv = favoriteTv?.some(item=> item.id == id)
   return suggest?(
     <div key={id} className={styles.filmCard}>
           <LazyLoadImage
@@ -22,7 +23,7 @@ const FilmsDisplay = ({ id, title, name, vote_average, media_type, poster_path, 
               : name && name.length < 20 ? (name) : name && name.length ? (`${name.slice(0, 20)}...`) : name
             }
           </h3>
-          <ButtonSuggest id={id} media_type={media_type} isSuggested={isSuggested}/>
+          <ButtonSuggest id={id} media_type={media_type} isSuggestedMovie={isSuggestedMovie} isSuggestedTv={isSuggestedTv}/>
           <div className={styles.starRate}>
             <span>
               <svg

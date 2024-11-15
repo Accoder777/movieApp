@@ -1,49 +1,32 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styles from './Dashboard.module.css'
 import { CreatedContext } from '../context/UserContext'
-import { getFavoriteTv, getWatchList } from '../../api/api'
+import { getSuggest } from '../../api/api'
 import { HandleApiRespErr } from '../../utils/HandleApiRespErr'
 
 const Dashboard = () => {
 
     const {sessionId,user} = useContext(CreatedContext)
-    const [tvData, setTvData] = useState([])
-    const [movieData, setMovieData] = useState([])
-    const [suggestData, setSuggestData] = useState([])
-
-    const fetchFavoriteData = async(typeOf)=>{
-        try {
-            const res = await getFavoriteTv(typeOf);
-            if(res.status === 200 && res.data.results){
-                if(typeOf === 'tv'){
-                    setTvData(res.data.results)
-                    console.log(res.data.results)
-                }else{
-                    setMovieData(res.data.results)
-                    console.log(res.data.results)
-                }
-            }
-        } catch (error) {
-            HandleApiRespErr(error)
-        }
-    }
+    const [favoriteTv, setFavoriteTv] = useState([])
+    const [favoriteMovies, setFavoriteMovies] = useState([])
     
-    const fetchWatchList = async(typeOf)=>{
-        try {
-            const res = await getWatchList(typeOf);
-            if(res.status === 200 && res.data.results){
-                setSuggestData(res.data.results)
-                
-            }
-        } catch (error) {;
-            HandleApiRespErr(error)
-        } 
-    }
-
     useEffect(()=>{
-        fetchFavoriteData('tv')
-        fetchFavoriteData('movies')
-        fetchWatchList('tv');
+      const getFavoriteData = async (dataType, sessionId) => {
+        try {
+          // const res = await getFavorites(dataType, sessionId);
+          const res = await getSuggest(21575738,sessionId, dataType);
+          if(dataType === 'movies'){
+            setFavoriteMovies(res.data.results)
+          }else{
+            setFavoriteTv(res.data.results)
+          }
+          
+        } catch (error) {
+          HandleApiRespErr(error);
+        }
+      };
+       getFavoriteData('tv', sessionId)
+       getFavoriteData('movies', sessionId)
     },[])
 
   return (
@@ -58,15 +41,15 @@ const Dashboard = () => {
             <h1 className={styles.title}>Welcome</h1>
             <div className={styles.cardContainer}>
                 <div className={styles.dashboardCards}>
-                    <span className={styles.score}>{movieData.length}</span>
+                    <span className={styles.score}>{favoriteMovies.length}</span>
                     <p className={styles.nameOfPage}>Movies</p>
                 </div>
                 <div className={styles.dashboardCards}>
-                    <span className={styles.score}>{tvData.length}</span>
+                    <span className={styles.score}>{favoriteTv.length}</span>
                     <p className={styles.nameOfPage}>TV Shows</p>
                 </div>
                 <div className={styles.dashboardCards}>
-                    <span className={styles.score}>{suggestData.length}</span>
+                    <span className={styles.score}>{favoriteTv.length + favoriteMovies.length}</span>
                     <p className={styles.nameOfPage}>Suggestions</p>
                 </div>
                 <div className={styles.dashboardCards}>

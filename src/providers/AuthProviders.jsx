@@ -6,7 +6,6 @@ const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const { sessionId, dispatch} = useContext(CreatedContext)
-    console.log('sesssionID', sessionId)
 
     useEffect(() => {
         const authFetch = async () => {
@@ -15,13 +14,15 @@ const AuthProvider = ({ children }) => {
             try {
                 
                 const res = await getUserDetails(sessionId);
-                console.log('User Detail==>', res)
+                console.log('res.data')
+                console.log(res.data)
                 
                 // Store Data 
                 dispatch({
                     type: 'access',
                     value: {
-                        username: res.data.username
+                        username: res.data.username,
+                        accountId: res.data.id
                     }
                 });
                 

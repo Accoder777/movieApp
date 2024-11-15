@@ -2,7 +2,7 @@ const {REACT_APP_SESSION_ID} = process.env
 
 // get
 export const getSessionID = () =>{
-    localStorage.getItem(REACT_APP_SESSION_ID)
+     return localStorage.getItem(REACT_APP_SESSION_ID)
 }
 
 // set
@@ -14,6 +14,6 @@ export const setSessionID = (sessionId) =>{
 
 // remove item
 
-// export const removeSessionId = ()=>{
-//     localStorage.removeItem(REACT_APP_SESSION_ID)
-// }
+export const removeSessionId = ()=>{
+    localStorage.removeItem(REACT_APP_SESSION_ID)
+}

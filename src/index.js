@@ -6,6 +6,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UserContext from './pages/context/UserContext';
 import AuthProvider from './providers/AuthProviders';
+import { store } from './app/store';
+import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +15,9 @@ root.render(
     <UserContext>
       <AuthProvider>
         <BrowserRouter>
+        <Provider store={store}>
           <App />
+        </Provider>
         </BrowserRouter>
       </AuthProvider>
       <ToastContainer/>

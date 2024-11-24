@@ -8,6 +8,7 @@ import { HandleApiRespErr } from "../../utils/HandleApiRespErr";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'; // Import styles
 import { useDebounce } from "use-debounce";
+import { useGetPopularMoviesQuery } from "../../server/apiControl";
 
 const list = [
   {
@@ -25,6 +26,11 @@ const list = [
 ];
 
 const Home = () => {
+
+  
+  const movieRes = useGetPopularMoviesQuery();
+  console.log(movieRes)
+
   const [Inputvalue, setInputValue] = useState("");
   const [isLoading, setIsloading] = useState(false);
   const [connectionErr, setConnnectionErr] = useState(false);

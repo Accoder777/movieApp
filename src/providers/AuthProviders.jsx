@@ -12,10 +12,7 @@ const AuthProvider = ({ children }) => {
             setIsLoading(true);
 
             try {
-                
                 const res = await getUserDetails(sessionId);
-                console.log('res.data')
-                console.log(res.data)
                 
                 // Store Data 
                 dispatch({

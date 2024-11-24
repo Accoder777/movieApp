@@ -1,4 +1,3 @@
-import React from 'react'
 import { toast } from 'react-toastify'
 
 export const HandleApiRespErr = (error) => {
@@ -9,5 +8,4 @@ export const HandleApiRespErr = (error) => {
     }else if(error?.response?.data?.status_code){
         toast.error(error?.response?.data?.status_code)
     }
-        //
 }

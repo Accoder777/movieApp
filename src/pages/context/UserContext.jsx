@@ -11,7 +11,6 @@ const initialValues = {
     isLoading: true
 }
 
-
 const reducer = (state, action) =>{
     if(action.type === 'Auth'){
         return{

@@ -8,7 +8,7 @@ import { HandleApiRespErr } from "../../utils/HandleApiRespErr";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'; // Import styles
 import { useDebounce } from "use-debounce";
-import { useGetPopularMoviesQuery } from "../../server/apiControl";
+import { useGetTrendingQuery } from "../../server/apiControl";
 
 const list = [
   {
@@ -26,11 +26,7 @@ const list = [
 ];
 
 const Home = () => {
-
   
-  const movieRes = useGetPopularMoviesQuery();
-  console.log(movieRes)
-
   const [Inputvalue, setInputValue] = useState("");
   const [isLoading, setIsloading] = useState(false);
   const [connectionErr, setConnnectionErr] = useState(false);
@@ -38,23 +34,27 @@ const Home = () => {
   const [activeTab, setActiveTab] = useState("all");
   const [debounceFilter] = useDebounce(Inputvalue, 1000)
 
-  useEffect(() => {
-    const getData = async () => {
-      setIsloading(true);
-      try {
-        const tempData = await getTrending(activeTab);
-        setMoviesData(tempData.data.results);
+  const tempData = useGetTrendingQuery(activeTab);
+  console.log(tempData?.data?.results)
+  // setMoviesData(tempData?.data?.results);
 
-      } catch (error) {
-        HandleApiRespErr(error)
-        setConnnectionErr(true)
+  // useEffect(() => {
+    //   const getData = async () => {
+      //     setIsloading(true);
+      //     try {
+        //       const tempData = await getTrending(activeTab);
+        //       setMoviesData(tempData.data.results);
+
+  //     } catch (error) {
+  //       HandleApiRespErr(error)
+  //       setConnnectionErr(true)
         
-      } finally {
-        setIsloading(false);
-      }
-    };
-    getData();
-  }, [activeTab]);
+  //     } finally {
+  //       setIsloading(false);
+  //     }
+  //   };
+  //   getData();
+  // }, [activeTab]);
 
 
   const handleFindData = async (Inputvalue)=>{
@@ -99,7 +99,7 @@ const Home = () => {
       <div className={styles.container}>
         <div className={styles.internalNav}></div>
         <h1 className={styles.filmCounter}>
-          All <span>({moviesData.length})</span>
+          All <span>({moviesData?.length})</span>
         </h1>
         {isLoading ? (
           <div style={{marginLeft: '20px'}}>
@@ -120,7 +120,7 @@ const Home = () => {
         ) : connectionErr ? (
           <div>Connection error occurred</div>
         ) : (    
-            moviesData.map((item) => (
+            moviesData?.map((item) => (
               <FilmsDisplay {...item} key={item.id} />
             ))         
         )}

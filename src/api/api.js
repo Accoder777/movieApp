@@ -33,11 +33,6 @@ export const getUserDetails = async(sessionId) => {
         return await apiClient.get(`/account?api_key=${apiKey}&session_id=${sessionId}`)
 }
 
-// Popular movies
-export const getPopularMovies = async()=>{
-    return await apiClient.get(`/movie/popular?api_key=${apiKey}`)
-}
-
 // trending 
 export const getTrending = async(typeOf)=>{
     return await apiClient.get(`/trending/${typeOf}/week?api_key=${apiKey}`)

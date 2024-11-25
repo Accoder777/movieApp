@@ -6,6 +6,7 @@ import { findMovie, getTrendingMovies } from '../../api/api'
 import { HandleApiRespErr } from '../../utils/HandleApiRespErr'
 import { useDebounce } from 'use-debounce'
 import Skeleton from 'react-loading-skeleton'
+import { useGetTrendingMoviesQuery } from '../../server/apiControl'
 
 const Movies = () => {
   // state
@@ -14,23 +15,27 @@ const Movies = () => {
   const [isLoading, setIsloading] = useState(false)
   const [movieData, setMovieData] = useState([])
 
-  useEffect(()=>{
-    const fetchData = async()=>{
-      setIsloading(true)
-      try {
-        const res = await getTrendingMovies();
-        if(res.status === 200 && res.data){
-          setMovieData(res.data.results)
-        }
-      } catch (error) {
-        HandleApiRespErr(error)
-      }finally{
-        setIsloading(false)
-      }
-    }
-    fetchData()
 
-  },[])
+  const res = useGetTrendingMoviesQuery()
+          setMovieData(res?.data?.results)
+
+  // useEffect(()=>{
+  //   const fetchData = async()=>{
+  //     setIsloading(true)
+  //     try {
+  //       const res = await getTrendingMovies();
+  //       if(res.status === 200 && res.data){
+  //         setMovieData(res.data.results)
+  //       }
+  //     } catch (error) {
+  //       HandleApiRespErr(error)
+  //     }finally{
+  //       setIsloading(false)
+  //     }
+  //   }
+  //   fetchData()
+
+  // },[])
 
 
   const handleFindData = async (Inputvalue) =>{
@@ -55,7 +60,7 @@ const Movies = () => {
   return (
     <>
      <BodyTop BodyTopTitle={"Movies"} value={Inputvalue} setValue={setInputValue} />
-     <p className={styles.filmCounter}>{`${movieData.length} items`}</p>     
+     <p className={styles.filmCounter}>{`${movieData?.length} items`}</p>     
      
      {
      isLoading ? (
@@ -76,7 +81,7 @@ const Movies = () => {
       </div>
     ):(
         
-      movieData.map((item)=>(
+      movieData?.map((item)=>(
             <FilmsDisplay {...item}  key={item.id}/>
           ))
      )

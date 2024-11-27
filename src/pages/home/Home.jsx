@@ -6,9 +6,8 @@ import Tabs from "../../components/ui/Tabs/Tabs";
 import { findAll, getTrending } from "../../api/api";
 import { HandleApiRespErr } from "../../utils/HandleApiRespErr";
 import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css'; // Import styles
+import 'react-loading-skeleton/dist/skeleton.css';
 import { useDebounce } from "use-debounce";
-import { useGetTrendingQuery } from "../../server/apiControl";
 
 const list = [
   {
@@ -34,27 +33,23 @@ const Home = () => {
   const [activeTab, setActiveTab] = useState("all");
   const [debounceFilter] = useDebounce(Inputvalue, 1000)
 
-  const tempData = useGetTrendingQuery(activeTab);
-  console.log(tempData?.data?.results)
-  // setMoviesData(tempData?.data?.results);
+  useEffect(() => {
+      const getData = async () => {
+          setIsloading(true);
+          try {
+              const tempData = await getTrending(activeTab);
+              setMoviesData(tempData.data.results);
 
-  // useEffect(() => {
-    //   const getData = async () => {
-      //     setIsloading(true);
-      //     try {
-        //       const tempData = await getTrending(activeTab);
-        //       setMoviesData(tempData.data.results);
-
-  //     } catch (error) {
-  //       HandleApiRespErr(error)
-  //       setConnnectionErr(true)
+      } catch (error) {
+        HandleApiRespErr(error)
+        setConnnectionErr(true)
         
-  //     } finally {
-  //       setIsloading(false);
-  //     }
-  //   };
-  //   getData();
-  // }, [activeTab]);
+      } finally {
+        setIsloading(false);
+      }
+    };
+    getData();
+  }, [activeTab]);
 
 
   const handleFindData = async (Inputvalue)=>{

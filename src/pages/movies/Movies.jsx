@@ -6,7 +6,6 @@ import { findMovie, getTrendingMovies } from '../../api/api'
 import { HandleApiRespErr } from '../../utils/HandleApiRespErr'
 import { useDebounce } from 'use-debounce'
 import Skeleton from 'react-loading-skeleton'
-import { useGetTrendingMoviesQuery } from '../../server/apiControl'
 
 const Movies = () => {
   // state
@@ -16,26 +15,26 @@ const Movies = () => {
   const [movieData, setMovieData] = useState([])
 
 
-  const res = useGetTrendingMoviesQuery()
-          setMovieData(res?.data?.results)
+  // const res = useGetTrendingMoviesQuery()
+  //         setMovieData(res?.data?.results)
 
-  // useEffect(()=>{
-  //   const fetchData = async()=>{
-  //     setIsloading(true)
-  //     try {
-  //       const res = await getTrendingMovies();
-  //       if(res.status === 200 && res.data){
-  //         setMovieData(res.data.results)
-  //       }
-  //     } catch (error) {
-  //       HandleApiRespErr(error)
-  //     }finally{
-  //       setIsloading(false)
-  //     }
-  //   }
-  //   fetchData()
+  useEffect(()=>{
+    const fetchData = async()=>{
+      setIsloading(true)
+      try {
+        const res = await getTrendingMovies();
+        if(res.status === 200 && res.data){
+          setMovieData(res.data.results)
+        }
+      } catch (error) {
+        HandleApiRespErr(error)
+      }finally{
+        setIsloading(false)
+      }
+    }
+    fetchData()
 
-  // },[])
+  },[])
 
 
   const handleFindData = async (Inputvalue) =>{

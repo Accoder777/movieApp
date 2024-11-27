@@ -14,7 +14,7 @@ import SuggestMe from './pages/SuggestMe'
 import MovieDetail from './pages/moviesDetail/MovieDetail'
 import TvShowsDetail from './pages/tvShowsDetail/TvShowsDetail'
 import Add from './pages/dashboard/add/Add'
-import { useGetPopularMoviesQuery } from './server/apiControl'
+import { useGetTrendingMovieQuery } from './service/moviecontroller'
 
 function Logout (){
   const {REACT_APP_SESSION_ID} = process.env
@@ -29,6 +29,8 @@ function Logout (){
 }
 
 const App = () => {
+  const trending = useGetTrendingMovieQuery('all')
+  console.log(trending)
   return (
     <>
       <Routes>

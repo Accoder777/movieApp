@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { apiController } from "../server/apiControl";
 import { setupListeners } from "@reduxjs/toolkit/query";
+import { apiController } from "../service/apiControl";
 
 export const store= configureStore({
     reducer: {
